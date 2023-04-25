@@ -11,5 +11,8 @@ const insertNewProduct = async (product: MyProducts) => {
     ...product,
   };
 };
- 
-export default { insertNewProduct };
+async function getAll() {
+  const users = await productsModel.getAll();
+  return users;
+}
+export default { insertNewProduct, getAll };
