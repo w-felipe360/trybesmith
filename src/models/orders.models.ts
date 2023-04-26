@@ -2,7 +2,7 @@ import { RowDataPacket } from 'mysql2';
 import connection from './connection';
 
 const getAll = async () => {
-  const [ordersData] = await connection.execute<RowDataPacket[]>(`
+  const [data] = await connection.execute<RowDataPacket[]>(`
       SELECT b.id, 
              b.user_id AS userId, 
              JSON_ARRAYAGG(c.id) AS productsIds 
@@ -10,7 +10,7 @@ const getAll = async () => {
         JOIN Trybesmith.products AS c ON c.order_id = b.id 
        GROUP BY b.id;
     `);
-  return ordersData;
+  return data;
 };
 
 export default getAll;
