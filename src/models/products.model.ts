@@ -12,12 +12,12 @@ async function getAll(): Promise<MyProducts[]> {
 }
 
 const insertProducts = async (product: MyProducts) => {
-  const [productData] = await connection.execute<ResultSetHeader>(
+  const [data] = await connection.execute<ResultSetHeader>(
     `INSERT INTO Trybesmith.products (name, amount)
      VALUES (?, ?)`,
     [product.name, product.amount],
   );
-  return productData;
+  return data;
 };
 
 export default {
